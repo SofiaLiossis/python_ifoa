@@ -6,7 +6,7 @@
 #   input: 1234 -> output: milleduecentotrentaquattro
 #
 # Come funziona?
-# Per i primi venti numeri, non c'è altra strada che quella
+# Per i primi venti numeri, non c'ï¿½ altra strada che quella
 # di prevedere una traduzione semplice attraverso una tabella:
 # 0 -> zero, 1 -> uno, 2 -> due, ..., 19 -> diciannove
 
@@ -20,10 +20,10 @@ def translate_to_20(n):
                "diciotto", "diciannove"]
     return NUMBERS[n]
 
-# dal 20, fino al 100 (escluso), ho la possibilità di prevedere
+# dal 20, fino al 100 (escluso), ho la possibilitï¿½ di prevedere
 # una "traduzione" della decina e demandare la "traduzione"
-# dell'unità alla funzione che traduce fino a 20
-# 25 -> decina = 2, unità = 5
+# dell'unitï¿½ alla funzione che traduce fino a 20
+# 25 -> decina = 2, unitï¿½ = 5
 
 
 def translate_to_100(n):
@@ -34,11 +34,22 @@ def translate_to_100(n):
     DECADES = ["venti", "trenta", "quaranta", "cinquanta", "sessanta",
                "settanta", "ottanta", "novanta"]
     decade =  n // 10 # la decina da n
-    unit = n % 10 # l'unità di n
+    unit = n % 10 # l'unitï¿½ di n
     return DECADES[decade-2] + translate_to_20(unit)
 
-def translate_number(n):
-    return translate_to_100(n)
 
-for x in range(1, 101):
+
+def translate_to_1000(n):
+    if n < 100:
+        return translate_to_100(n)
+    if n > 999:
+        return "Out of range"
+    cent = n // 100
+    decine = n % 100
+    return translate_to_20(cent) + "cento" + translate_to_100(decine)
+
+def translate_number(n):
+    return translate_to_1000(n)
+
+for x in range(1, 1001):
     print(translate_number(x))
