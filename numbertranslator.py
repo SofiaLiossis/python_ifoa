@@ -40,5 +40,5 @@ def translate_to_100(n):
 def translate_number(n):
     return translate_to_100(n)
 
-for x in range(1, 100):
+for x in range(1, 101):
     print(translate_number(x))
