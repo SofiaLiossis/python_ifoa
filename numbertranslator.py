@@ -46,10 +46,37 @@ def translate_to_1000(n):
         return "Out of range"
     cent = n // 100
     decine = n % 100
-    return translate_to_20(cent) + "cento" + translate_to_100(decine)
+    if cent > 1: #se le centinaia sono più di 1 traduci pure le centinaia
+        return translate_to_20(cent) + "cento" + translate_to_100(decine) #altrimenti scrivi solo cento
+    return "cento" + translate_to_100(decine)
+
+def translate_to_1000000(n):
+    if n < 1000:
+        return translate_to_1000(n)
+    if n > 999999:
+        return "Out of range"
+    migliaia = n // 1000
+    cent = n % 1000
+    if migliaia > 1 :
+        return translate_to_1000(migliaia) + "mila" + translate_to_1000(cent)
+    return "mille" + translate_to_1000(cent)
+
 
 def translate_number(n):
-    return translate_to_1000(n)
+    if (n == 0):
+        return "zero"
+    if (n < 0):
+        return "meno " + translate_number(-n)
+    result = translate_to_1000000(n).replace('iu', 'u').replace(
+        'io', 'o').replace('au', 'u').replace('ao', 'o')
+    return result
 
-for x in range(1, 1001):
+
+for x in range(1, 1000001):
     print(translate_number(x))
+
+
+
+    
+
+ 
