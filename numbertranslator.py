@@ -37,5 +37,8 @@ def translate_to_100(n):
     unit = n % 10 # l'unità di n
     return DECADES[decade-2] + translate_to_20(unit)
 
+def translate_number(n):
+    return translate_to_100(n)
+
 for x in range(1, 100):
-    print(translate_to_100(x))
+    print(translate_number(x))
